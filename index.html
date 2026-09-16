@@ -611,125 +611,192 @@
     <!-- / FULL PAGE MENU -->
 
     <!-- Banner -->
-<section class="bg-[radial-gradient(50%_50%_at_50%_50%,#000080_0%,#000050_100%)] min-h-screen flex items-stretch overflow-hidden pt-12">
-  <div class="container flex items-stretch">
-    
-    <!-- Tailwind Grid Layout (Stretched to full height) -->
-    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 w-full items-stretch">
-      
-      <!-- Left Side: Image (Order 2 on mobile/tablet, Order 1 on xl screens) -->
-      <div class="xl:col-span-6 flex justify-center xl:justify-start items-end h-full order-2 xl:order-1">
-        <img 
-          src="assets/images/moving-banner-person.png" 
-          alt="Moving Service Professional" 
-          class="w-auto h-auto object-contain object-bottom block m-0 p-0"
-        />
-      </div>
+    <section
+      class="bg-[radial-gradient(50%_50%_at_50%_50%,#000080_0%,#000050_100%)] min-h-screen flex items-stretch overflow-hidden pt-12"
+    >
+      <div class="container flex items-stretch">
+        <div
+          class="grid grid-cols-1 xl:grid-cols-12 gap-8 w-full items-stretch"
+        >
+          <!-- Left Side: Image -->
+          <div
+            class="xl:col-span-6 flex justify-center xl:justify-start items-stretch h-full order-2 xl:order-1"
+          >
+            <img
+              src="assets/images/moving-banner-person.webp"
+              alt="Moving Service Professional"
+              class="moving-banner-img w-full h-full object-cover object-bottom block m-0 p-0"
+            />
+          </div>
 
-      <!-- Right Side: Content & Copy (Order 1 on mobile/tablet, Order 2 on xl screens) -->
-      <div class="xl:col-span-6 flex flex-col sm:pt-12 pt-6 text-white order-1 xl:order-2">
-        
-        <!-- Main Heading -->
-        <h1 class="koulen text-white text-[38px] md:text-[56px] lg:text-[70px] xl:text-[80px] font-normal leading-[90%] ">
-          Moving service site design to drive more quote requests
-        </h1>
+          <!-- Right Side: Content & Copy -->
+          <div
+            class="xl:col-span-6 flex flex-col text-white order-1 xl:order-2 pt-12 xl:pb-8"
+          >
+            <!-- Main Heading -->
+            <h1
+              class="moving-banner-heading koulen text-white text-[38px] md:text-[56px] lg:text-[70px] xl:text-[80px] font-normal leading-[90%]"
+            >
+              Moving service site design to drive more quote requests
+            </h1>
 
-        <!-- Description -->
-        <p class="stack-sans-text text-[#C8C8FF] text-xs md:text-sm lg:text-base font-normal leading-[150%] mt-2.5 md:mt-4 xl:mt-6">
-          Complete branding, website, SEO, and GBP setup designed to turn moving searches into more qualified customer quote requests.
-        </p>
+            <!-- Description -->
+            <p
+              class="moving-banner-desc stack-sans-text text-[#C8C8FF] text-xs md:text-sm lg:text-base font-normal leading-[150%] mt-2.5 md:mt-4 xl:mt-6"
+            >
+              Complete branding, website, SEO, and GBP setup designed to turn
+              moving searches into more qualified customer quote requests.
+            </p>
 
-        <!-- Pricing Tag Block -->
-        <div class="mt-6 md:mt-7 lg:mt-9 xl:mt6 border-l-2 border-[#FFA500] pl-4">
-          <span class="block text-xs uppercase tracking-wider text-gray-400 font-medium">Everything included</span>
-          <span class="text-2xl sm:text-3xl font-extrabold text-[#FFA500] tracking-wide">USD 999/ONE-TIME</span>
-        </div>
-
-        <!-- CTA Button Component -->
-        <div class="mt-8">
-            <!-- primary button -->
-            <a href="#" class="moving-btn-cta flex items-center gap-0 w-fit">
+            <!-- Pricing Tag Block -->
+            <div
+              class="moving-banner-price mt-6 md:mt-7 lg:mt-9 xl:mt-12 border-l-2 border-[#FFA500] pl-4"
+            >
               <span
-                class="moving-magnetic-btn inline-flex items-center justify-center rounded-full bg-[#FFA500] md:px-8 md:py-4 sm:px-5 px-4 py-3 sm:py-3.5 text-sm sm:text-base md:text-lg lg:text-[22px] leading-[110%] uppercase whitespace-nowrap"
+                class="block koulen text-[#FFA500] text-base md:text-lg font-normal leading-[110%] uppercase"
+                >Everything included</span
               >
-                <span class="moving-btn-text-wipe">Book a free 15-min call</span>
-              </span>
               <span
-                class="moving-magnetic-btn btn-reveal-icon relative w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-[#FFA500] flex items-center justify-center overflow-hidden shrink-0"
-                aria-label="Get free sample"
+                class="koulen text-[#FFA500] text-[32px] md:text-[48px] font-normal leading-[100%] mt-3 md:mt-2.5 lg:mt-3"
+                >USD 999/ONE-TIME</span
               >
-                <!-- Layer 1 Icon -->
-                <span class="moving-btn-reveal-icon-layer moving-btn-reveal-icon-layer-1">
-                  <svg
-                    class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+            </div>
+
+            <!-- CTA Button Component (left untouched, no animation) -->
+            <div class="moving-banner-cta mt-4 lg:mt-6">
+              <!-- primary button -->
+              <a href="#" class="moving-btn-cta flex items-center gap-0 w-fit">
+                <span
+                  class="moving-magnetic-btn inline-flex items-center justify-center rounded-full bg-[#FFA500] md:px-8 md:py-4 sm:px-5 px-4 py-3 sm:py-3.5 text-sm sm:text-base md:text-lg lg:text-[22px] leading-[110%] uppercase whitespace-nowrap"
+                >
+                  <span class="moving-btn-text-wipe"
+                    >Book a free 15-min call</span
                   >
-                    <g clip-path="url(#clip0_391_13791)">
-                      <path
-                        d="M22 0H9.99997V2H20.586L0.0429688 22.543L1.45697 23.957L22 3.414V14H24V2C24 0.897 23.103 0 22 0Z"
-                        fill="#000050"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_391_13791">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
                 </span>
-                <!-- Layer 2 Icon -->
-                <span class="moving-btn-reveal-icon-layer moving-btn-reveal-icon-layer-2">
-                  <svg
-                    class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                <span
+                  class="moving-magnetic-btn btn-reveal-icon relative w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-[#FFA500] flex items-center justify-center overflow-hidden shrink-0"
+                  aria-label="Get free sample"
+                >
+                  <span
+                    class="moving-btn-reveal-icon-layer moving-btn-reveal-icon-layer-1"
                   >
-                    <g clip-path="url(#clip0_391_13951)">
-                      <path
-                        d="M22 0H9.99997V2H20.586L0.0429688 22.543L1.45697 23.957L22 3.414V14H24V2C24 0.897 23.103 0 22 0Z"
-                        fill="#434397"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_391_13951">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
+                    <svg
+                      class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_391_13791)">
+                        <path
+                          d="M22 0H9.99997V2H20.586L0.0429688 22.543L1.45697 23.957L22 3.414V14H24V2C24 0.897 23.103 0 22 0Z"
+                          fill="#000050"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_391_13791">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </span>
+                  <span
+                    class="moving-btn-reveal-icon-layer moving-btn-reveal-icon-layer-2"
+                  >
+                    <svg
+                      class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_391_13951)">
+                        <path
+                          d="M22 0H9.99997V2H20.586L0.0429688 22.543L1.45697 23.957L22 3.414V14H24V2C24 0.897 23.103 0 22 0Z"
+                          fill="#fadca6"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_391_13951">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </span>
                 </span>
-              </span>
-            </a>
+              </a>
+            </div>
+
+            <!-- Service Tags / Keywords -->
+            <div class="moving-banner-tags mt-6 md:mt-7 lg:mt-9 xl:mt-12">
+              <p
+                class="stack-sans-text text-[#C8C8FF] text-base md:text-lg lg:text-xl font-[250] leading-[110%] xl:max-w-117.5 uppercase"
+              >
+                local moves · long-distance · interstate · commercial · piano
+                and specialty · packing services · storage · international
+              </p>
+            </div>
+
+            <!-- Bullet Points / Trust Marks -->
+            <ul
+              class="moving-banner-list grid grid-cols-1 gap-2 text-xs sm:text-sm text-gray-300 mt-6 md:mt-7 lg:mt-9 xl:mt-12"
+            >
+              <li
+                class="moving-banner-list-item flex items-center gap-2 lg:gap-3"
+              >
+                <img
+                  src="assets/images/moving-banner-check.svg"
+                  alt="check"
+                  class="w-4 md:w-4.5 lg:w-5.25 object-contain shrink-0"
+                />
+                <span
+                  class="stack-sans-text text-[#C8C8FF] text-xs md:text-sm lg:text-base font-normal leading-[150%]"
+                  >Trusted by independent pet care businesses</span
+                >
+              </li>
+              <li
+                class="moving-banner-list-item flex items-center gap-2 lg:gap-3"
+              >
+                <img
+                  src="assets/images/moving-banner-check.svg"
+                  alt="check"
+                  class="w-4 md:w-4.5 lg:w-5.25 object-contain shrink-0"
+                />
+                <span
+                  class="stack-sans-text text-[#C8C8FF] text-xs md:text-sm lg:text-base font-normal leading-[150%]"
+                >
+                  14-day delivery</span
+                >
+              </li>
+              <li
+                class="moving-banner-list-item flex items-center gap-2 lg:gap-3"
+              >
+                <img
+                  src="assets/images/moving-banner-check.svg"
+                  alt="check"
+                  class="w-4 md:w-4.5 lg:w-5.25 object-contain shrink-0"
+                />
+                <span
+                  class="stack-sans-text text-[#C8C8FF] text-xs md:text-sm lg:text-base font-normal leading-[150%]"
+                  >You own the site, content, and domain</span
+                >
+              </li>
+              <li
+                class="moving-banner-list-item flex items-center gap-2 lg:gap-3"
+              >
+                <img
+                  src="assets/images/moving-banner-check.svg"
+                  alt="check"
+                  class="w-4 md:w-4.5 lg:w-5.25 object-contain shrink-0"
+                />
+                <span
+                  class="stack-sans-text text-[#C8C8FF] text-xs md:text-sm lg:text-base font-normal leading-[150%]"
+                  >No retainers</span
+                >
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <!-- Service Tags / Keywords -->
-        <p class="text-xs sm:text-sm text-gray-400 uppercase tracking-wide mt-6 max-w-xl">
-          Local moves &bull; Long-distance &bull; Interstate &bull; Commercial &bull; Piano and specialty &bull; Packing services &bull; Storage &bull; International
-        </p>
-
-        <!-- Bullet Points / Trust Marks -->
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-gray-300">
-          <li class="flex items-center gap-2">
-            <span class="text-[#FFA500] font-bold">&#10003;</span> Trusted by independent moving companies
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="text-[#FFA500] font-bold">&#10003;</span> 14-day delivery
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="text-[#FFA500] font-bold">&#10003;</span> You own the site, content, and domain
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="text-[#FFA500] font-bold">&#10003;</span> No retainers
-          </li>
-        </ul>
-
       </div>
-
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- cta section start -->
     <section
@@ -772,14 +839,18 @@
                   <span
                     class="moving-magnetic-btn inline-flex items-center justify-center rounded-full bg-[#FFA500] md:px-8 md:py-4 sm:px-5 px-4 py-3 text-sm md:text-lg lg:text-[22px] leading-[110%] uppercase whitespace-nowrap"
                   >
-                    <span class="moving-btn-text-wipe">Book a free 15-min call</span>
+                    <span class="moving-btn-text-wipe"
+                      >Book a free 15-min call</span
+                    >
                   </span>
                   <span
                     class="moving-magnetic-btn btn-reveal-icon relative md:w-14 md:h-14 h-10.5 w-10.5 rounded-full bg-[#FFA500] flex items-center justify-center overflow-hidden shrink-0"
                     aria-label="Get free sample"
                   >
                     <!-- Layer 1 Icon -->
-                    <span class="moving-btn-reveal-icon-layer moving-btn-reveal-icon-layer-1">
+                    <span
+                      class="moving-btn-reveal-icon-layer moving-btn-reveal-icon-layer-1"
+                    >
                       <svg
                         class="w-4 h-4 md:w-6 md:h-6 shrink-0"
                         viewBox="0 0 24 24"
@@ -800,7 +871,9 @@
                       </svg>
                     </span>
                     <!-- Layer 2 Icon -->
-                    <span class="moving-btn-reveal-icon-layer moving-btn-reveal-icon-layer-2">
+                    <span
+                      class="moving-btn-reveal-icon-layer moving-btn-reveal-icon-layer-2"
+                    >
                       <svg
                         class="w-4 h-4 md:w-6 md:h-6 shrink-0"
                         viewBox="0 0 24 24"
@@ -810,7 +883,7 @@
                         <g clip-path="url(#clip0_391_13951)">
                           <path
                             d="M22 0H9.99997V2H20.586L0.0429688 22.543L1.45697 23.957L22 3.414V14H24V2C24 0.897 23.103 0 22 0Z"
-                            fill="#434397"
+                            fill="#fadca6"
                           />
                         </g>
                         <defs>

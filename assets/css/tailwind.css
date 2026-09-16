@@ -871,7 +871,7 @@ html.lenis body {
   transition: background-position 0.6s ease;
  font-family: "Koulen", sans-serif;
   font-weight: 400;
-  background-image: linear-gradient(to right, #434397 50%, #000050 50%);
+  background-image: linear-gradient(to right, #fadca6 50%, #000050 50%);
 }
 
 /* ---- Parent Hover Interactions (CTA Trigger) ---- */
