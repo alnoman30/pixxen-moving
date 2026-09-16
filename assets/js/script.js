@@ -216,7 +216,7 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
-// Pixxen Med-Spa js start
+// Pixxen Moving js start
 document.addEventListener('DOMContentLoaded', () => {
  
     const MAGNETIC_MAX_DISTANCE = 12; // px -- movement can never exceed this, however far the mouse goes
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// 
+// Moving banner section stagger
 document.addEventListener("DOMContentLoaded", function () {
   // Set initial states first, so nothing "flashes" before animating
   gsap.set(".moving-banner-heading", { y: 40, opacity: 0, filter: "blur(3px)" });
@@ -338,4 +338,176 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 });
 
+// Moving section heading splittext reveal
+document.fonts.ready.then(() => {
+  document.querySelectorAll(".moving-heading-reveal").forEach((el) => {
+
+    // keep layout stable + let SplitText auto-handle resize/responsive re-splitting
+    SplitText.create(el, {
+      type: "words,lines",
+      mask: "lines",              // clips each line so words rise out of a "letterbox" — the modern reveal look
+      linesClass: "reveal-line",
+      autoSplit: true,            // re-splits automatically on font load / resize
+      onSplit: (self) => {
+        return gsap.from(self.words, {
+          yPercent: 110,
+          opacity: 0,
+          stagger: 0.045,
+          duration: 0.9,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
+            // markers: true, // uncomment while debugging
+          },
+        });
+      },
+    });
+
+  });
+});
+
 // 
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const counters = document.querySelectorAll(".moving-counter-item");
+
+  counters.forEach((counter) => {
+    const rawVal =
+      counter.getAttribute("data-value") || counter.textContent.trim();
+
+    const prefix = counter.getAttribute("data-prefix") || "";
+    const suffix = counter.getAttribute("data-suffix") || "";
+
+    const cleanVal = rawVal.replace(/[^\d.]/g, "");
+    const chars = cleanVal.split("");
+    const isSingleDigit = cleanVal.replace(".", "").length === 1;
+
+    counter.innerHTML = "";
+
+    if (prefix) {
+      const pSpan = document.createElement("span");
+      pSpan.innerHTML = prefix;
+      counter.appendChild(pSpan);
+    }
+
+    chars.forEach((char, index) => {
+      if (char === ".") {
+        const dot = document.createElement("span");
+        dot.textContent = ".";
+        counter.appendChild(dot);
+        return;
+      }
+
+      const col = document.createElement("span");
+      col.className = "moving-counter-digit-col";
+
+      const list = document.createElement("span");
+      list.className = "moving-counter-digit-list";
+
+      const finalNum = parseInt(char, 10);
+
+      // Standardize the roll: 0 through 9, ending with the specific finalNum
+      const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, finalNum];
+
+      numbers.forEach((num) => {
+        const numSpan = document.createElement("span");
+        numSpan.textContent = num;
+        list.appendChild(numSpan);
+      });
+
+      col.appendChild(list);
+      counter.appendChild(col);
+
+      // Ensure first digit (index 0) starts cleanly from top
+      let startY = 0; 
+
+      if (index === 0) {
+        startY = 0; 
+      } else if (!isSingleDigit && index % 2 !== 0) {
+        startY = 100;
+      } else {
+        startY = -100;
+      }
+
+      ScrollTrigger.create({
+        trigger: counter,
+        start: "top bottom",
+        once: true,
+        onEnter: () => {
+          gsap.fromTo(
+            list,
+            {
+              yPercent: startY
+            },
+            {
+              yPercent: -((numbers.length - 1) * (100 / numbers.length)),
+              duration: 2.8,
+              ease: "expo.out",
+              delay: index * 0.1
+            }
+          );
+        }
+      });
+    });
+
+    if (suffix) {
+      const sSpan = document.createElement("span");
+      sSpan.innerHTML = suffix;
+      counter.appendChild(sSpan);
+    }
+  });
+});
+
+// 
+document.querySelectorAll('.moving-spacification').forEach(row => {
+  const img = row.querySelector('img');
+  const base = gsap.getProperty(img, "rotation"); // or set manually
+  row.addEventListener('mouseenter', () => gsap.to(img, { rotation: -5, duration: 0.5, ease: "power2.out" }));
+  row.addEventListener('mouseleave', () => gsap.to(img, { rotation: base, duration: 0.5, ease: "power2.out" }));
+});
+
+
+// moving Timeline js
+document.addEventListener("DOMContentLoaded", () => {
+  const wrappers = document.querySelectorAll(".moving-stagger-wrap, .moving-stagger-mobile");
+
+  wrappers.forEach((wrapper) => {
+    const items = wrapper.querySelectorAll(".moving-stagger-item");
+
+    const markers = wrapper.querySelectorAll(".moving-stagger-marker");
+    const cards = wrapper.querySelectorAll(".moving-stagger-card");
+
+    gsap.from(items, {
+      scrollTrigger: {
+        trigger: wrapper,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none none",
+      },
+      y: 60,
+      opacity: 0,
+      scale: 0.95,
+      filter: "blur(8px)",
+      duration: 1,
+      stagger: 0.2,
+      ease: "power4.out",
+    });
+
+    gsap.from(markers, {
+      scrollTrigger: {
+        trigger: wrapper,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+      scale: 0.5,
+      opacity: 0,
+      duration: 0.6,
+      delay: 0.2,
+      stagger: 0.15,
+      ease: "back.out(1.7)",
+    });
+  });
+});

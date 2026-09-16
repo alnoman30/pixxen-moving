@@ -838,7 +838,7 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* Pixxen Landscaping CSS start here */
+/* Pixxen Moving CSS start here */
 /* ---- Base Reveal Icon Layers ---- */
 .moving-btn-reveal-icon-layer {
   position: absolute;
@@ -915,3 +915,65 @@ html.lenis body {
     border-radius: 42px;
   }
 }
+
+/*  */
+.moving-counter-item {
+  display: inline-flex;
+  overflow: hidden;
+  align-items: baseline;
+}
+
+.moving-counter-digit-col {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  vertical-align: bottom;
+}
+
+.moving-counter-digit-list {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.moving-counter-digit-list span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1em;
+}
+
+/*  */
+ .moving-niche-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "title"
+        "desc"
+        "image";
+      align-items: center;
+    }
+    .moving-niche-title  { grid-area: title; }
+    .moving-niche-desc   { grid-area: desc; }
+    .moving-niche-image  { grid-area: image; justify-self: center; }
+ 
+    /* Tablet: title + description stacked on left, image on right */
+    @media (min-width: 768px) {
+      .moving-niche-row {
+        grid-template-columns: 1fr minmax(0, 340px);
+        grid-template-areas:
+          "title image"
+          "desc  image";
+        column-gap: 2rem;
+        row-gap: 0.5rem;
+      }
+    }
+ 
+    /* Desktop: title | image | description in one row */
+    @media (min-width: 1024px) {
+      .moving-niche-row {
+        grid-template-columns: 1fr minmax(0, 340px) 1fr;
+        grid-template-areas: "title image desc";
+        column-gap: 3rem;
+      }
+    }
