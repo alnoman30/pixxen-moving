@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Farro:wght@300;400;500;700&family=Koulen&family=Stack+Sans+Text:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Farro:wght@300;400;500;700&family=Koulen&family=Stack+Sans+Text:wght@200..700&display=swap');
 
 
 
@@ -54,6 +54,11 @@
   font-family: "Stack Sans Text", sans-serif;
   font-style: normal;
 }
+.anton {
+  font-family: "Anton", sans-serif;
+  font-style: normal;
+}
+
 body {
   background-color: #f7f8f6;
     font-family: "Stack Sans Text", sans-serif;
@@ -135,9 +140,9 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  background-color: #FFA500;
+  background: radial-gradient(50% 50% at 50% 50%, #000080 0%, #000050 100%);
   /* dark panel bg */
-  border: 1px solid #000080;
+  border: 1px solid #FFA500;
   border-radius: 24px;
   list-style: none;
   padding: 0;
@@ -174,7 +179,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 14px;
-  color: #000050;
+  color: #FFFFFF;
   text-decoration: none;
   padding: 11px 20px;
   font-size: 20px;
@@ -192,8 +197,8 @@ nav {
 
 .dropdown-service-list a:hover,
 .dropdown-service-list a.active {
-  background-color: #000080;
-  color: #FFFFFF;
+  background-color: #FFA500;
+  color: #000050;
 }
 
 /* Service icon wrapper */
@@ -977,3 +982,17 @@ html.lenis body {
         column-gap: 3rem;
       }
     }
+
+/* Movign FAQ */
+.moving-faq-content {
+    max-height: 0;
+    transition: max-height 0.4s ease;
+}
+
+.moving-faq-content p {
+    margin: 0;
+}
+
+.moving-icon-close img {
+    transition: transform 0.3s ease;
+}

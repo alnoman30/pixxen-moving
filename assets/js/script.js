@@ -471,43 +471,172 @@ document.querySelectorAll('.moving-spacification').forEach(row => {
 
 
 // moving Timeline js
+
 document.addEventListener("DOMContentLoaded", () => {
-  const wrappers = document.querySelectorAll(".moving-stagger-wrap, .moving-stagger-mobile");
+  const timelines = gsap.utils.toArray(".moving-timeline");
 
-  wrappers.forEach((wrapper) => {
-    const items = wrapper.querySelectorAll(".moving-stagger-item");
+  if (!timelines.length) return;
 
-    const markers = wrapper.querySelectorAll(".moving-stagger-marker");
-    const cards = wrapper.querySelectorAll(".moving-stagger-card");
+  timelines.forEach((timeline, index) => {
+    const track = timeline.querySelector(".timeline-track");
+    const items = gsap.utils.toArray(".timeline-item", timeline);
+    const nodes = items.map(i => i.querySelector(".timeline-node"));
+    const cards = items.map(i => i.querySelector(".timeline-card"));
 
-    gsap.from(items, {
-      scrollTrigger: {
-        trigger: wrapper,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none none",
-      },
-      y: 60,
-      opacity: 0,
-      scale: 0.95,
-      filter: "blur(8px)",
-      duration: 1,
-      stagger: 0.2,
-      ease: "power4.out",
-    });
+    const isDesktop = () =>
+      window.matchMedia("(min-width: 1024px)").matches;
 
-    gsap.from(markers, {
-      scrollTrigger: {
-        trigger: wrapper,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-      scale: 0.5,
-      opacity: 0,
-      duration: 0.6,
-      delay: 0.2,
-      stagger: 0.15,
-      ease: "back.out(1.7)",
+    let lastIsDesktop = isDesktop();
+    let scrollTrigger;
+
+    function setInitialStates() {
+      gsap.set(track, {
+        scaleX: isDesktop() ? 0 : 1,
+        scaleY: isDesktop() ? 1 : 0
+      });
+
+      gsap.set(nodes, {
+        scale: 0,
+        opacity: 0
+      });
+
+      gsap.set(cards, {
+        autoAlpha: 0,
+        y: 28
+      });
+    }
+
+    function playTimeline() {
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "power3.out"
+        }
+      });
+
+      // Line
+      tl.to(track, {
+        ...(isDesktop()
+          ? { scaleX: 1 }
+          : { scaleY: 1 }),
+        duration: 0.9,
+        ease: "power2.inOut"
+      });
+
+      // Nodes
+      tl.to(
+        nodes,
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.18,
+          ease: "back.out(1.6)"
+        },
+        "-=0.35"
+      );
+
+      // Cards
+      tl.to(
+        cards,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.18
+        },
+        "<0.05"
+      );
+    }
+
+    function createScrollTrigger() {
+      scrollTrigger = ScrollTrigger.create({
+        trigger: timeline,
+        start: "top 78%",
+        once: true,
+        onEnter: playTimeline
+      });
+    }
+
+    // Initial state
+    setInitialStates();
+
+    // Scroll reveal
+    createScrollTrigger();
+
+    // Resize handling
+    let resizeTimer;
+
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+
+      resizeTimer = setTimeout(() => {
+        const currentIsDesktop = isDesktop();
+
+        if (currentIsDesktop !== lastIsDesktop) {
+          lastIsDesktop = currentIsDesktop;
+
+          gsap.killTweensOf([
+            track,
+            ...nodes,
+            ...cards
+          ]);
+
+          setInitialStates();
+
+          if (scrollTrigger) {
+            scrollTrigger.kill();
+          }
+
+          ScrollTrigger.refresh();
+
+          createScrollTrigger();
+        } else {
+          ScrollTrigger.refresh();
+        }
+      }, 200);
     });
   });
 });
+
+
+// Moving FAQ system
+document.addEventListener("DOMContentLoaded", function () {
+    const faqItems = document.querySelectorAll(".moving-faq-item");
+
+    faqItems.forEach(function (item) {
+        const trigger = item.querySelector(".moving-faq-trigger");
+        const content = item.querySelector(".moving-faq-content");
+        const icon = item.querySelector(".moving-icon-close img");
+
+        trigger.addEventListener("click", function () {
+            const isOpen = item.classList.contains("active");
+
+            // Close all FAQs
+            faqItems.forEach(function (faq) {
+                faq.classList.remove("active");
+
+                const faqContent = faq.querySelector(".moving-faq-content");
+                const faqIcon = faq.querySelector(".moving-icon-close img");
+
+                faqContent.style.maxHeight = "0px";
+
+                if (faqIcon) {
+                    faqIcon.style.transform = "rotate(0deg)";
+                }
+            });
+
+            // Open clicked FAQ
+            if (!isOpen) {
+                item.classList.add("active");
+
+                content.style.maxHeight = content.scrollHeight + "px";
+
+                if (icon) {
+                    icon.style.transform = "rotate(45deg)";
+                }
+            }
+        });
+    });
+});
+
+// 
